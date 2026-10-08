@@ -1,0 +1,32 @@
+@model IEnumerable<Biblioteca.Web.Models.Socio>
+@{
+    ViewData["Title"] = ViewData["Title"] ?? "Socios";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Nuevo socio</a>
+</p>
+
+<table class="table table-striped datatable">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>DNI</th>
+            <th>Email</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.Nombre</td>
+            <td>@item.DNI</td>
+            <td>@item.Email</td>
+            <td></td>
+        </tr>
+    }
+    </tbody>
+</table>

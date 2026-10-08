@@ -1,0 +1,45 @@
+@model IEnumerable<Biblioteca.Web.Models.Libro>
+@{
+    ViewData["Title"] = ViewData["Title"] ?? "Libros";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Nuevo libro</a>
+</p>
+
+<form method="get" class="mb-3">
+    <div class="input-group">
+        <input type="text" name="titulo" class="form-control" placeholder="Buscar por título" />
+        <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+    </div>
+</form>
+
+<table class="table table-striped datatable dt-no-search">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Año</th>
+            <th>Ejemplares</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.Titulo</td>
+            <td>@item.AutorNombre</td>
+            <td>@(item.Anio.HasValue ? item.Anio.Value.ToString() : "")</td>
+            <td>@item.Ejemplares</td>
+            <td>
+                <a class="btn btn-sm btn-secondary" asp-action="Details" asp-route-id="@item.Id">Ver</a>
+                <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
